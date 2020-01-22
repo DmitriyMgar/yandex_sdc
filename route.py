@@ -4,7 +4,7 @@ import numpy as np
 
 
 def get_distance_between_two_points(point1, point2):
-    R = 6372795
+    r = 6372795  # радиус Земли в метрах
 
     lat1 = radians(point1['lat'])
     lon1 = radians(point1['lon'])
@@ -17,7 +17,7 @@ def get_distance_between_two_points(point1, point2):
     a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
-    return R * c
+    return r * c
 
 
 # читаем полученные данные
@@ -68,16 +68,3 @@ for signal in data:
 
 print('autopilot distance: {0}'.format(autopilot_distance))
 print('manual control distance: {0}'.format(manual_distance))
-
-
-# print("manual control:")
-# for route in manual_route:
-#     get_distance_by_route(route)
-#     print("route consist of {0} points".format(len(route)))
-#     print(get_distance_by_route(route))
-
-# print("autopilot:")
-# for route in autopilot_route:
-#     print("route consist of {0} points".format(len(route)))
-#     print(get_distance_by_route(route))
-
